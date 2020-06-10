@@ -72,6 +72,12 @@ function reset() {
 function list_() {
   executionStart = new Date();
 
+  try {
+    Drive.Revisions;
+  } catch (e) {
+    spreadsheet.toast("The Drive API v2 isn't enabled. Contributors won't be fetched.", 'Warning', 60);
+  }
+
   listSheet.getRange('1:1').clearContent();
   listSheet.getRange('A1:M1').setValues([
     [
